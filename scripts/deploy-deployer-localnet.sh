@@ -16,6 +16,5 @@ GAS_COST="0x$(printf '%x' $(($(cat output/deployment.json | jq --raw-output '.ga
 TRANSACTION="0x$(cat output/deployment.json | jq --raw-output '.transaction')"
 DEPLOYER_ADDRESS="0x$(cat output/deployment.json | jq --raw-output '.address')"
 
-# send gas money to signer
-echo "# send gas money to signer"
-curl $JSON_RPC -X 'POST' -H 'Content-Type: application/json' --data "{\"jsonrpc\":\"2.0\", \"id\":1, \"method\": \"eth_sendTransaction\", \"params\": [{\"from\":\"$MY_ADDRESS\",\"to\":\"$ONE_TIME_SIGNER_ADDRESS\",\"value\":\"$GAS_COST\"}]}"
+# deploy the deployer contract
+curl $JSON_RPC -X 'POST' -H 'Content-Type: application/json' --data "{\"jsonrpc\":\"2.0\", \"id\":1, \"method\": \"eth_sendRawTransaction\", \"params\": [\"$TRANSACTION\"]}"
