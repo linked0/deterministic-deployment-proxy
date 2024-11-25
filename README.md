@@ -3,6 +3,7 @@ This is a proxy contract that can be deployed to any chain at the same address, 
 
 ## Usage
 ```bash
+brew install jq
 npm install
 npm run build
 ./scripts/test.sh
@@ -37,16 +38,22 @@ object "Proxy" {
 이 컨트랙트를 생성하기 위해서는 one time signer에게 gas fee를 전달해야 한다. 다음의 명령을 이용한다.
 ```
 scripts/send-gas-to-signer.sh
+or
+scripts/send-gas-to-signer.sh http://x.x.x.x:8545
 ```
 
 gas fee가 전달된 후에 비로소 `npm run build`를 통해서 생성된, Proxy 컨트랙트를 배포하는 트랜잭션을 전송할 수 있다.
 ```
 scripts/deploy-deployer-localnet.sh
+or
+scripts/deploy-deployer-localnet.sh http://x.x.x.x:8545
 ```
 
-테스트 컨트랙트를 Proxy 컨트랙트를 통해서 배포할 수 있다. 
+테스트 컨트랙트를 Proxy 컨트랙트를 통해서 배포할 수 있다.
 ```
 scripts/deploy-test-contract-localnet.sh
+or
+scripts/deploy-test-contract-localnet.sh http://x.x.x.x:8545
 ```
 
 ### Details

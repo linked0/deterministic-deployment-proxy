@@ -3,6 +3,10 @@
 set -x
 
 JSON_RPC="http://localhost:8545"
+if [ "$1" ]; then
+	JSON_RPC=$1
+fi
+echo $JSON_RPC
 
 # start geth in a local container
 # docker container run --rm -d --name deployment-proxy-geth -p 1234:8545 -e GETH_VERBOSITY=3 keydonix/geth-clique
